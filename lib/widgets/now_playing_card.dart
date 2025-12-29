@@ -81,43 +81,51 @@ class NowPlayingCard extends StatelessWidget {
         children: [
           // Album art placeholder
           Expanded(
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [primaryColor, secondaryColor],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: primaryColor.withOpacity(0.4),
-                      blurRadius: 30,
-                      spreadRadius: 5,
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 200, maxHeight: 200),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [primaryColor, secondaryColor],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: primaryColor.withOpacity(0.4),
+                          blurRadius: 30,
+                          spreadRadius: 5,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    // Animated rings when playing
-                    if (audio.isPlaying) ...[
-                      _buildPulsingRing(0, primaryColor),
-                      _buildPulsingRing(200, secondaryColor),
-                      _buildPulsingRing(400, primaryColor),
-                    ],
-                    // Music icon
-                    Icon(
-                      Icons.music_note_rounded,
-                      size: 64,
-                      color: Colors.white.withOpacity(0.9),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          // Animated rings when playing
+                          if (audio.isPlaying) ...[
+                            _buildPulsingRing(0, primaryColor),
+                            _buildPulsingRing(200, secondaryColor),
+                            _buildPulsingRing(400, primaryColor),
+                          ],
+                          // Music icon
+                          Icon(
+                            Icons.music_note_rounded,
+                            size: 64,
+                            color: Colors.white.withOpacity(0.9),
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
+                  ).animate(target: audio.isPlaying ? 1 : 0)
+                    .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1), duration: 300.ms),
                 ),
-              ).animate(target: audio.isPlaying ? 1 : 0)
-                .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1), duration: 300.ms),
+              ),
             ),
           ),
           const SizedBox(height: 20),

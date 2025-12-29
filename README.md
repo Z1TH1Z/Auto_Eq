@@ -1,4 +1,5 @@
 # Auto EQ - Intelligent Audio Equalizer
+  Especially for Audiophiles
 
 <p align="center">
   <img src="https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge" alt="Version">

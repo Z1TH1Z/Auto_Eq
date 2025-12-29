@@ -1,0 +1,31 @@
+# Flutter/Dart
+.dart_tool/
+.packages
+build/
+*.iml
+.idea/
+.metadata
+pubspec.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Distribution (too large for git)
+dist/
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.log
+*.tmp
